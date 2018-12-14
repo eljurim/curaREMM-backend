@@ -1,0 +1,28 @@
+{
+  "name": "backend-curaremm-express",
+  "version": "1.0.0",
+  "description": "BackEnd para la aplicacion de curaremm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eljurim/curaREMM.git"
+  },
+  "keywords": [
+    "Express",
+    "NodeJS"
+  ],
+  "author": "Manuel Eljuri",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eljurim/curaREMM/issues"
+  },
+  "homepage": "https://github.com/eljurim/curaREMM#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.16"
+  }
+}
