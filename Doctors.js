@@ -17,11 +17,19 @@ const doctors = new Schema({
         type: Array,
         required: true
     },
+    plan: {
+        type: Array,
+        required: true
+    },
     qualification: {
         type:Number,
-        required:true,
+        required:false,
         min:0,
         max: 5
+    },
+    phoneNumber: {
+        type: String,
+        required: true
     }
 })
 

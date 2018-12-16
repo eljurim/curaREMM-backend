@@ -25,6 +25,12 @@ app.post('/hospitals/findById', async (req ,resp)=>{
     resp.send(hospitalsList)
 })
 
+app.post('/doctors/add', async (req ,resp)=>{
+    console.log(req.body);
+    await Doctor.create(req.body)
+    resp.send(req.body.name + " Creado")
+})
+
 app.get('/hospitals/findAll', async (req ,resp)=>{
     let hospitalsList = await Hospital.find({}).exec()
     resp.send(hospitalsList)
