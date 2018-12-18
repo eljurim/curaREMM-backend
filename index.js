@@ -37,6 +37,11 @@ app.post('/doctors/add', async (req ,resp)=>{
     resp.send(req.body.name + " Creado")
 })
 
+app.post('/doctors/findBySpecialty', async (req ,resp)=>{
+    console.log(req.body);
+    resp.send(await Doctor.find(req.body))
+})
+
 app.get('/hospitals/findAll', async (req ,resp)=>{
     let hospitalsList = await Hospital.find({}).exec()
     resp.send(hospitalsList)
