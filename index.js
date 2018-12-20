@@ -42,6 +42,14 @@ app.post('/doctors/findBySpecialty', async (req ,resp)=>{
     resp.send(await Doctor.find(req.body))
 })
 
+app.get('/doctors/specialtiesList', async (req, resp)=>{
+    resp.send(await Doctor.find({}).distinct('specialties'))
+})
+
+app.get('/doctors/distincAddresses', async (req, resp)=>{
+    resp.send(await Doctor.find({}).distinct('workPlaces'))
+})
+
 app.get('/hospitals/findAll', async (req ,resp)=>{
     let hospitalsList = await Hospital.find({}).exec()
     resp.send(hospitalsList)
