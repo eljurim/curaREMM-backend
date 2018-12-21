@@ -60,21 +60,26 @@ app.post('/doctors/add', async (req ,resp)=>{
 })
 // a modificar para geolocalizacion
 app.post('/doctors/findBySpecialty', async (req ,resp)=>{
-    console.log(req.body);
-    let responseWithDistance = []
-    // let jsonBody = JSON.parse(req.body.position)
-    console.log(req.body.latitude)
-    console.log(req.body.longitude)
-    await Doctor.find({"specialties":req.body.specialties},(err, foundDoctors) =>{
-        foundDoctors.forEach((currentDoctor)=>{
-            let distance = calculateDistance(req.body.latitude, req.body.longitude, currentDoctor.workPlaces.latitude, currentDoctor.workPlaces.longitude, "K")
-            console.log(distance)
-            currentDoctor = (null,foundDoctors)
-            currentDoctor = Object.assign({distance},currentDoctor)
-            responseWithDistance.push(currentDoctor)
-        })
-        
-        resp.send(responseWithDistance)
+    const {
+        specialties,
+        latitude,
+        longitude
+    } = req.body
+    
+    const doctors = await Doctor.find({specialties: specialties}).exec()
+    const doctorsAndDistances = doctors.map(doctor => {
+        doctor = doctor.toObject()
+        const distance = doctor.workPlaces 
+        ? calculateDistance(latitude, longitude, doctor.workPlaces.latitude, doctor.workPlaces.longitude, "K")
+        : null
+        console.warn('distance: ', distance)
+        return { ...doctor, distance }
+    })
+    resp.send({
+        success:true,
+        data: {
+            doctorsAndDistances
+        }
     })
 })
 
