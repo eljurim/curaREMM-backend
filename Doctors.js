@@ -9,10 +9,8 @@ const doctors = new Schema({
         required: true,
         type: String
     },
-    workPlaces: {
-        type: String,
-        required: true
-    },
+    workPlaces: {latitude:Number,
+                    longitude:Number},
     specialties: {
         type: Array,
         required: true
@@ -22,15 +20,18 @@ const doctors = new Schema({
         required: true
     },
     qualification: {
-        type:Number,
-        required:false,
-        min:0,
-        max: 5
+        stars:{
+                type:Number,
+                required:false,
+                min:0,
+                max: 5
+                },
+        count: Number
     },
     phoneNumber: {
         type: String,
         required: true
-    }
+    },
 })
 
 module.exports = {

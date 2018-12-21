@@ -55,6 +55,16 @@ app.get('/hospitals/findAll', async (req ,resp)=>{
     resp.send(hospitalsList)
 })
 
+app.get('/hospitals/distincAddresses', async (req ,resp)=>{
+    let hospitalsList = await Hospital.find({}).distinct('searchableAddress').exec()
+    resp.send(hospitalsList)
+})
+
+app.get('/hospitals/distincLocations', async (req ,resp)=>{
+    let hospitalsList = await Hospital.find({}).distinct('position').exec()
+    resp.send(hospitalsList)
+})
+
 app.listen(8080, () =>{
     console.log('app listen in port 8080')
 })
