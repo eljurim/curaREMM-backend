@@ -70,8 +70,8 @@ app.post('/doctors/findBySpecialty', async (req ,resp)=>{
     const doctorsAndDistances = doctors.map(doctor => {
         doctor = doctor.toObject()
         const distance = doctor.workPlaces 
-        ? calculateDistance(latitude, longitude, doctor.workPlaces.latitude, doctor.workPlaces.longitude, "K")
-        : null
+            ? calculateDistance(latitude, longitude, doctor.workPlaces.latitude, doctor.workPlaces.longitude, "K")
+            : null
         console.warn('distance: ', distance)
         return { ...doctor, distance }
     })
