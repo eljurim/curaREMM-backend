@@ -69,7 +69,7 @@ app.post('/doctors/findBySpecialty', async (req ,resp)=>{
         foundDoctors.forEach((currentDoctor)=>{
             let distance = calculateDistance(req.body.latitude, req.body.longitude, currentDoctor.workPlaces.latitude, currentDoctor.workPlaces.longitude, "K")
             console.log(distance)
-            currentDoctor = (null,foundDoctors)
+            currentDoctor = currentDoctor.toObject()
             currentDoctor = Object.assign({distance},currentDoctor)
             responseWithDistance.push(currentDoctor)
         })
