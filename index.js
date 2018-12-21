@@ -75,10 +75,11 @@ app.post('/doctors/findBySpecialty', async (req ,resp)=>{
         console.warn('distance: ', distance)
         return { ...doctor, distance }
     })
+    const doctorsAndDistancesWithWorkplaces = doctorsAndDistances.filter(doctor => doctor.distance)
     resp.send({
         success:true,
         data: {
-            doctorsAndDistances
+            doctors: doctorsAndDistancesWithWorkplaces
         }
     })
 })
